@@ -10,8 +10,8 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stabl
     && wget -O $JENKINS_EXEC_DIR/jenkins.war https://get.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war \
     && chown -R jenkins:jenkins /app \
     && chmod 755 /app \
-	&& dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo && dnf install docker-ce --nobest -y \
-	dnf module -y install nodejs:16 \
+    && dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo && dnf install docker-ce --nobest -y \
+    && dnf module -y install nodejs:16 \
     && curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash \
     && source $NVM_DIR/nvm.sh && npm install 
 USER jenkins
