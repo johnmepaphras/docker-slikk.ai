@@ -17,4 +17,3 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stabl
 USER jenkins
 WORKDIR $JENKINS_HOME
 EXPOSE 8080 50000
-CMD ["/app/jenkins/start_jenkins.sh"]
