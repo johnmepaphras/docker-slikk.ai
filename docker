@@ -1,4 +1,4 @@
-FROM 144538309574.dkr.ecr.us-east-1.amazonaws.com/gesos-rhel8:8.5
+FROM redhat/ubi8
 USER root
 ENV SONARSCANNERCLI_VERSION=4.7.0.2747 \
     NVM_DIR=/usr/local/nvm \
@@ -41,7 +41,7 @@ USER jenkins
 ENTRYPOINT ["/jenkins_exec/start_agent.sh"]
 
 
-FROM 144538309574.dkr.ecr.us-east-1.amazonaws.com/gesos-rhel8:8.5
+FROM redhat/ubi8
 USER root
 ENV JENKINS_VERSION=2.346.2 \
     JENKINS_EXEC_DIR=/app/jenkins_exec \
