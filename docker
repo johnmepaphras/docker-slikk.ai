@@ -1,0 +1,65 @@
+FROM 144538309574.dkr.ecr.us-east-1.amazonaws.com/gesos-rhel8:8.5
+USER root
+ENV SONARSCANNERCLI_VERSION=4.7.0.2747 \
+    NVM_DIR=/usr/local/nvm \
+    WORKDIR=/jenkins_home/jenkins \
+    TZ="America/New_York"
+RUN yum install -y java-1.8.0-openjdk* java-11-openjdk* procps ncurses gettext zip wget sudo python39 git \
+    && mkdir -p /usr/local/nvm /usr/share/jenkins /jenkin_home $WORKDIR /jenkins_exec \
+    && groupadd -g 1001 jenkins && useradd -m -d $WORKDIR -u 1001 -g 1001 -G wheel jenkins \
+    && sed -i '/wheel/s/^#*/#/g' /etc/sudoers && sed -i '/NOPASSWD/s/^#*//g' /etc/sudoers
+COPY ./start_agent.sh /jenkins_exec/
+COPY ./agent.jar /jenkins_exec/
+COPY ./agent.jar /usr/share/jenkins/
+COPY ./jenkins-agent /jenkins_exec/
+RUN dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo && dnf install docker-ce --nobest -y \
+    && wget -O /jenkin_home/apache-maven-3.6.3-bin.zip https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip \
+    && unzip -d /jenkin_home /jenkin_home/apache-maven-3.6.3-bin.zip \
+    && wget -O /jenkin_home/apache-maven-3.2.3-bin.zip https://archive.apache.org/dist/maven/maven-3/3.2.3/binaries/apache-maven-3.2.3-bin.zip \
+    && unzip -d /jenkin_home /jenkin_home/apache-maven-3.2.3-bin.zip \
+    && wget -O /jenkin_home/apache-maven-3.6.2-bin.zip https://archive.apache.org/dist/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.zip \
+    && unzip -d /jenkin_home /jenkin_home/apache-maven-3.6.2-bin.zip \
+    && wget -O /jenkin_home/sonar-scanner-cli-$SONARSCANNERCLI_VERSION-linux.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONARSCANNERCLI_VERSION-linux.zip \
+    && unzip -d /jenkin_home /jenkin_home/sonar-scanner-cli-$SONARSCANNERCLI_VERSION-linux.zip \
+    && rm -f /jenkin_home/sonar-scanner-cli-$SONARSCANNERCLI_VERSION-linux.zip \
+    && rm -f /jenkin_home/apache-maven*.zip
+COPY --chown=jenkins:jenkins ./sonar-scanner /jenkin_home/sonar-scanner-cli-$SONARSCANNERCLI_VERSION-linux/conf/
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip && ./aws/install && pip3.9 install awsebcli --upgrade --user  && rm -f awscliv2.zip \
+    && curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash && source $NVM_DIR/nvm.sh \
+    && wget -O /jenkin_home/node-v10.24.1-linux-x64.tar.gz https://nodejs.org/download/release/v10.24.1/node-v10.24.1-linux-x64.tar.gz \
+    && tar -xvf /jenkin_home/node-v10.24.1-linux-x64.tar.gz --directory /jenkin_home/ \
+    && wget -O /jenkin_home/node-v14.20.0-linux-x64.tar.gz https://nodejs.org/download/release/v14.20.0/node-v14.20.0-linux-x64.tar.gz \
+    && tar -xvf /jenkin_home/node-v14.20.0-linux-x64.tar.gz --directory /jenkin_home/ \
+    && wget -O /jenkin_home/node-v12.22.1-linux-x64.tar.gz https://nodejs.org/download/release/v12.22.12/node-v12.22.12-linux-x64.tar.gz \
+    && tar -xvf /jenkin_home/node-v12.22.1-linux-x64.tar.gz --directory /jenkin_home/ \
+    && rm -f /jenkin_home/node-*.tar.gz && nvm install 10.24.1  && npm install -g bower \
+    && chown -R jenkins:jenkins /jenkin_home && chown -R jenkins:jenkins /jenkins_exec \
+    && chmod 775 /jenkins_exec/agent.jar && chmod 775 /usr/share/jenkins/agent.jar && chmod +x /jenkins_exec/start_agent.sh &&  chmod +x /jenkins_exec/jenkins-agent
+WORKDIR $WORKDIR
+USER jenkins
+ENTRYPOINT ["/jenkins_exec/start_agent.sh"]
+
+
+FROM 144538309574.dkr.ecr.us-east-1.amazonaws.com/gesos-rhel8:8.5
+USER root
+ENV JENKINS_VERSION=2.346.2 \
+    JENKINS_EXEC_DIR=/app/jenkins_exec \
+    JENKINS_HOME=/app/jenkins \
+    JAVA_OPTS="-Djenkins.install.runSetupWizard=false" \
+    TZ="America/New_York"
+RUN yum install -y java-11-openjdk* procps ncurses zip wget sudo git iputils \
+    && mkdir -p $JENKINS_HOME $JENKINS_EXEC_DIR/logs \
+    && groupadd -g 1001 jenkins && useradd -m -d $JENKINS_HOME -u 1001 -g 1001 -G wheel jenkins \
+    && sed -i '/wheel/s/^#*/#/g' /etc/sudoers && sed -i '/NOPASSWD/s/^#*//g' /etc/sudoers
+COPY ./start_jenkins.sh $JENKINS_EXEC_DIR/
+RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo \
+    && wget -O $JENKINS_EXEC_DIR/jenkins.war https://get.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip && ./aws/install && rm -f awscliv2.zip \
+    && chown -R jenkins:jenkins /app \
+    && chmod 775 /app && chmod +x $JENKINS_EXEC_DIR/start_jenkins.sh
+USER jenkins
+WORKDIR $JENKINS_HOME
+EXPOSE 8080 50000
+CMD $JENKINS_EXEC_DIR/start_jenkins.sh
