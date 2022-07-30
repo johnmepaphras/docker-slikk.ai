@@ -1,0 +1,233 @@
+Started by user unknown or anonymous
+Running as SYSTEM
+Building in workspace /app/jenkins/workspace/slikk.dev
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /app/jenkins/workspace/slikk.dev/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:johnmepaphras/office-sql.git # timeout=10
+Fetching upstream changes from git@github.com:johnmepaphras/office-sql.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.31.1'
+ > git fetch --tags --force --progress -- git@github.com:johnmepaphras/office-sql.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 918e91fa227282817a0dfb00071be306c73bebdc (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 918e91fa227282817a0dfb00071be306c73bebdc # timeout=10
+Commit message: "added giribabu branch changes to master"
+ > git rev-list --no-walk 918e91fa227282817a0dfb00071be306c73bebdc # timeout=10
+[slikk.dev] $ /bin/sh -xe /tmp/jenkins3377129229555739971.sh
++ npm ci
+npm WARN deprecated @hapi/pinpoint@2.0.0: Moved to 'npm install @sideway/pinpoint'
+npm WARN deprecated @hapi/formula@2.0.0: Moved to 'npm install @sideway/formula'
+npm WARN deprecated @hapi/address@4.1.0: Moved to 'npm install @sideway/address'
+npm WARN deprecated @hapi/joi@17.1.1: Switch to 'npm install joi'
+
+added 857 packages, and audited 858 packages in 10m
+
+85 packages are looking for funding
+  run `npm fund` for details
+
+13 vulnerabilities (2 moderate, 8 high, 3 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
++ npm fund
+hapto-office-sql@0.0.1
++-- https://opencollective.com/nest
+| | `-- @nestjs/common@8.3.1, @nestjs/core@8.3.1, @nestjs/platform-express@8.3.1, @nestjs/testing@8.3.1
+| `-- https://github.com/sponsors/RubenVerborgh
+|     `-- follow-redirects@1.14.9
++-- https://github.com/sponsors/jaredhanson
+|   `-- passport@0.5.2
++-- https://github.com/sponsors/isaacs
+|   `-- rimraf@3.0.2, glob@7.2.0
++-- https://opencollective.com/typeorm
+| | `-- typeorm@0.2.44
+| +-- https://github.com/sponsors/feross
+| |   `-- buffer@6.0.3, base64-js@1.5.1, ieee754@1.2.1, run-parallel@1.2.0, queue-microtask@1.2.3, safe-buffer@5.2.1, buffer@5.7.1
+| `-- https://github.com/chalk/wrap-ansi?sponsor=1
+|     `-- wrap-ansi@7.0.0
++-- https://opencollective.com/typescript-eslint
+|   `-- @typescript-eslint/eslint-plugin@5.12.1, @typescript-eslint/scope-manager@5.12.1, @typescript-eslint/types@5.12.1, @typescript-eslint/visitor-keys@5.12.1, @typescript-eslint/type-utils@5.12.1, @typescript-eslint/utils@5.12.1, @typescript-eslint/typescript-estree@5.12.1, @typescript-eslint/parser@5.12.1
++-- https://opencollective.com/eslint
+|   `-- eslint@8.10.0
++-- https://paulmillr.com/funding/
+| | `-- chokidar@3.5.3
+| `-- https://github.com/sponsors/jonschlinkert
+|     `-- picomatch@2.3.1
++-- https://opencollective.com/webpack
+| | `-- webpack@5.69.1, schema-utils@3.1.1, terser-webpack-plugin@5.3.1, schema-utils@2.7.0
+| `-- https://opencollective.com/browserslist
+|     `-- browserslist@4.19.3, caniuse-lite@1.0.30001312
++-- https://github.com/sindresorhus/emittery?sponsor=1
+|   `-- emittery@0.8.1
++-- https://opencollective.com/babel
+|   `-- @babel/core@7.17.5
+`-- https://ko-fi.com/tunnckoCore/commissions
+    `-- formidable@2.0.1
+
++ npm audit fix --force
+npm WARN using --force Recommended protections disabled.
+npm WARN audit Updating passport to 0.6.0,which is a SemVer major change.
+npm WARN audit Updating @nestjs/platform-express to 7.5.5,which is a SemVer major change.
+npm WARN audit Updating @nestjs/testing to 7.5.5,which is a SemVer major change.
+npm WARN audit Updating @nestjs/core to 7.5.5,which is a SemVer major change.
+npm WARN audit Updating @nestjs/typeorm to 7.1.5,which is a SemVer major change.
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: @nestjs/core@7.5.5
+npm WARN Found: @nestjs/common@8.3.1
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^7.0.0 || ^8.0.0" from @nestjs/config@1.2.0
+npm WARN   node_modules/@nestjs/config
+npm WARN     @nestjs/config@"^1.2.0" from the root project
+npm WARN   4 more (@nestjs/jwt, @nestjs/mapped-types, the root project, @nestjs/passport)
+npm WARN 
+npm WARN Could not resolve dependency:
+npm WARN peer @nestjs/common@"^7.0.0" from @nestjs/core@7.5.5
+npm WARN node_modules/@nestjs/core
+npm WARN   @nestjs/core@"7.5.5" from the root project
+npm WARN   3 more (@nestjs/platform-express, @nestjs/testing, @nestjs/typeorm)
+npm WARN 
+npm WARN Conflicting peer dependency: @nestjs/common@7.6.18
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^7.0.0" from @nestjs/core@7.5.5
+npm WARN   node_modules/@nestjs/core
+npm WARN     @nestjs/core@"7.5.5" from the root project
+npm WARN     3 more (@nestjs/platform-express, @nestjs/testing, @nestjs/typeorm)
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: @nestjs/core@7.5.5
+npm WARN Found: rxjs@7.5.4
+npm WARN node_modules/rxjs
+npm WARN   peer rxjs@"^7.1.0" from @nestjs/common@8.3.1
+npm WARN   node_modules/@nestjs/common
+npm WARN     peer @nestjs/common@"^7.0.0 || ^8.0.0" from @nestjs/config@1.2.0
+npm WARN     node_modules/@nestjs/config
+npm WARN     4 more (@nestjs/jwt, @nestjs/mapped-types, the root project, @nestjs/passport)
+npm WARN   3 more (@nestjs/config, the root project, inquirer)
+npm WARN 
+npm WARN Could not resolve dependency:
+npm WARN peer rxjs@"^6.0.0" from @nestjs/core@7.5.5
+npm WARN node_modules/@nestjs/core
+npm WARN   @nestjs/core@"7.5.5" from the root project
+npm WARN   3 more (@nestjs/platform-express, @nestjs/testing, @nestjs/typeorm)
+npm WARN 
+npm WARN Conflicting peer dependency: rxjs@6.6.7
+npm WARN node_modules/rxjs
+npm WARN   peer rxjs@"^6.0.0" from @nestjs/core@7.5.5
+npm WARN   node_modules/@nestjs/core
+npm WARN     @nestjs/core@"7.5.5" from the root project
+npm WARN     3 more (@nestjs/platform-express, @nestjs/testing, @nestjs/typeorm)
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: @nestjs/platform-express@7.5.5
+npm WARN Found: @nestjs/common@8.3.1
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^7.0.0 || ^8.0.0" from @nestjs/config@1.2.0
+npm WARN   node_modules/@nestjs/config
+npm WARN     @nestjs/config@"^1.2.0" from the root project
+npm WARN   4 more (@nestjs/jwt, @nestjs/mapped-types, the root project, @nestjs/passport)
+npm WARN 
+npm WARN Could not resolve dependency:
+npm WARN peer @nestjs/common@"^7.0.0" from @nestjs/platform-express@7.5.5
+npm WARN node_modules/@nestjs/platform-express
+npm WARN   @nestjs/platform-express@"7.5.5" from the root project
+npm WARN 
+npm WARN Conflicting peer dependency: @nestjs/common@7.6.18
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^7.0.0" from @nestjs/platform-express@7.5.5
+npm WARN   node_modules/@nestjs/platform-express
+npm WARN     @nestjs/platform-express@"7.5.5" from the root project
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: @nestjs/testing@7.5.5
+npm WARN Found: @nestjs/common@8.3.1
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^7.0.0 || ^8.0.0" from @nestjs/config@1.2.0
+npm WARN   node_modules/@nestjs/config
+npm WARN     @nestjs/config@"^1.2.0" from the root project
+npm WARN   4 more (@nestjs/jwt, @nestjs/mapped-types, the root project, @nestjs/passport)
+npm WARN 
+npm WARN Could not resolve dependency:
+npm WARN peer @nestjs/common@"^7.0.0" from @nestjs/testing@7.5.5
+npm WARN node_modules/@nestjs/testing
+npm WARN   dev @nestjs/testing@"7.5.5" from the root project
+npm WARN 
+npm WARN Conflicting peer dependency: @nestjs/common@7.6.18
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^7.0.0" from @nestjs/testing@7.5.5
+npm WARN   node_modules/@nestjs/testing
+npm WARN     dev @nestjs/testing@"7.5.5" from the root project
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: @nestjs/typeorm@7.1.5
+npm WARN Found: @nestjs/common@8.3.1
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^7.0.0 || ^8.0.0" from @nestjs/config@1.2.0
+npm WARN   node_modules/@nestjs/config
+npm WARN     @nestjs/config@"^1.2.0" from the root project
+npm WARN   4 more (@nestjs/jwt, @nestjs/mapped-types, the root project, @nestjs/passport)
+npm WARN 
+npm WARN Could not resolve dependency:
+npm WARN peer @nestjs/common@"^6.7.0 || ^7.0.0" from @nestjs/typeorm@7.1.5
+npm WARN node_modules/@nestjs/typeorm
+npm WARN   @nestjs/typeorm@"7.1.5" from the root project
+npm WARN 
+npm WARN Conflicting peer dependency: @nestjs/common@7.6.18
+npm WARN node_modules/@nestjs/common
+npm WARN   peer @nestjs/common@"^6.7.0 || ^7.0.0" from @nestjs/typeorm@7.1.5
+npm WARN   node_modules/@nestjs/typeorm
+npm WARN     @nestjs/typeorm@"7.1.5" from the root project
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: @nestjs/typeorm@7.1.5
+npm WARN Found: rxjs@7.5.4
+npm WARN node_modules/rxjs
+npm WARN   peer rxjs@"^7.1.0" from @nestjs/common@8.3.1
+npm WARN   node_modules/@nestjs/common
+npm WARN     peer @nestjs/common@"^7.0.0 || ^8.0.0" from @nestjs/config@1.2.0
+npm WARN     node_modules/@nestjs/config
+npm WARN     4 more (@nestjs/jwt, @nestjs/mapped-types, the root project, @nestjs/passport)
+npm WARN   3 more (@nestjs/config, the root project, inquirer)
+npm WARN 
+npm WARN Could not resolve dependency:
+npm WARN peer rxjs@"^6.0.0" from @nestjs/typeorm@7.1.5
+npm WARN node_modules/@nestjs/typeorm
+npm WARN   @nestjs/typeorm@"7.1.5" from the root project
+npm WARN 
+npm WARN Conflicting peer dependency: rxjs@6.6.7
+npm WARN node_modules/rxjs
+npm WARN   peer rxjs@"^6.0.0" from @nestjs/typeorm@7.1.5
+npm WARN   node_modules/@nestjs/typeorm
+npm WARN     @nestjs/typeorm@"7.1.5" from the root project
+npm WARN deprecated multer@1.4.2: Multer 1.x is affected by CVE-2022-24434. This is fixed in v1.4.4-lts.1 which drops support for versions of Node.js before 6. Please upgrade to at least Node.js 6 and version 1.4.4-lts.1 of Multer. If you need support for older versions of Node.js, we are open to accepting patches that would fix the CVE on the main 1.x release line, whilst maintaining compatibility with Node.js 0.10.
+
+added 14 packages, removed 21 packages, changed 66 packages, and audited 851 packages in 1m
+
+82 packages are looking for funding
+  run `npm fund` for details
+
+# npm audit report
+
+dicer  *
+Severity: high
+Crash in HeaderParser in dicer - https://github.com/advisories/GHSA-wm7h-9275-46v2
+No fix available
+node_modules/dicer
+  busboy  <=0.3.1
+  Depends on vulnerable versions of dicer
+  node_modules/busboy
+    multer  <=2.0.0-rc.3
+    Depends on vulnerable versions of busboy
+    node_modules/multer
+      @nestjs/platform-express  *
+      Depends on vulnerable versions of multer
+      node_modules/@nestjs/platform-express
+
+4 high severity vulnerabilities
+
+Some issues need review, and may require choosing
+a different dependency.
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
